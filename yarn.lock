@@ -465,9 +465,9 @@ typescript@^5.0.2:
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
   integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
 
-vite@^4.4.4:
+vite@^4.4.8:
   version "4.4.8"
-  resolved "https://registry.npmjs.org/vite/-/vite-4.4.8.tgz#31e4a438f8748695c68bd57ffd262ba93540fdf7"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-4.4.8.tgz#31e4a438f8748695c68bd57ffd262ba93540fdf7"
   integrity sha512-LONawOUUjxQridNWGQlNizfKH89qPigK36XhMI7COMGztz8KNY0JHim7/xDd71CZwGT4HtSRgI7Hy+RlhG0Gvg==
   dependencies:
     esbuild "^0.18.10"
