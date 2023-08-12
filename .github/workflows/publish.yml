@@ -40,25 +40,5 @@ jobs:
           TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
           TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
         with:
-          tagName: entry-test-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
-          releaseName: 'TT v__VERSION__'
-
-  update:
-    needs: publish
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true
-
-      - name: Install Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - run: yarn
-
-      - name: Create Update
-        run: yarn update
-        env:
-          GITHUB_TOKEN: ${{ secrets.TAURI_TEST_TOKEN }}
+          tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+          releaseName: v__VERSION__
