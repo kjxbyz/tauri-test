@@ -42,3 +42,23 @@ jobs:
         with:
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
           releaseName: v__VERSION__
+
+  update:
+    needs: publish
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - run: yarn
+
+      - name: Create Update
+        run: yarn update
+        env:
+          GITHUB_TOKEN: ${{ secrets.TAURI_TEST_TOKEN }}
