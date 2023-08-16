@@ -5,15 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "tauri dev",
-    "build": "tauri build",
-    "update": "node scripts/update.mjs"
+    "build": "tauri build"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.4.0"
   },
   "devDependencies": {
-    "@actions/github": "^5.1.1",
-    "@tauri-apps/cli": "^1.4.0",
-    "node-fetch": "^3.3.2"
+    "@tauri-apps/cli": "^1.4.0"
   }
 }
