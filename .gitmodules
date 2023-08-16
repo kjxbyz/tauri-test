@@ -1,3 +1,4 @@
 [submodule "nt"]
 	path = nt
 	url = https://github.com/kjxbyz/nuxt-test.git
+	branch = main
