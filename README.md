@@ -4,6 +4,4 @@
 
 1. `yarn`
 
-2. `cd nt && yarn && cd ..`
-
-3. `yarn dev`
+2. `yarn dev`
