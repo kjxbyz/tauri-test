@@ -14,11 +14,11 @@ jobs:
       matrix:
         settings:
           - platform: 'macos-latest'
-            args: '--target universal-apple-darwin'
+            args: '--verbose --target universal-apple-darwin'
           - platform: 'macos-latest'
-            args: '--target x86_64-apple-darwin'
+            args: '--verbose --target x86_64-apple-darwin'
           - platform: 'macos-latest'
-            args: '--target aarch64-apple-darwin'
+            args: '--verbose --target aarch64-apple-darwin'
           - platform: 'ubuntu-20.04'
             args: ''
           - platform: 'windows-latest'
@@ -48,6 +48,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
+      - name: Configure api key for macos
+        if: matrix.settings.platform == 'macos-latest'
+        run: |
+          echo "APPLE_API_AUTH_KEY" | base64 --decode > ~/auth_key.p8
+        env:
+          APPLE_API_AUTH_KEY: ${{ secrets.APPLE_API_AUTH_KEY }}
       - name: install dependencies
         run: yarn
       - uses: tauri-apps/tauri-action@v0
@@ -55,8 +61,23 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TAURI_TEST_TOKEN }}
           TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
           TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+          # code signing for macos
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_PATH: '~/auth_key.p8'
+          # code signing for linux
+          SIGN: 1
+          SIGN_KEY: ${{ secrets.SIGN_KEY }}
+          APPIMAGETOOL_SIGN_PASSPHRASE: ${{ secrets.APPIMAGETOOL_SIGN_PASSPHRASE }}
         with:
           tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
           releaseName: v__VERSION__
           includeDebug: true
           args: ${{ matrix.settings.args }}
+      - name: Clean up
+        if: matrix.settings.platform == 'macos-latest'
+        run: |
+          rm -f ~/auth_key.p8
