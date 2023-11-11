@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tauri dev",
     "build": "tauri build",
-    "postinstall": "cd nt && yarn && cd .."
+    "postinstall": "cd nt && pnpm i && cd .."
   },
   "dependencies": {
     "@tauri-apps/api": "^1.5.1"
@@ -16,5 +16,6 @@
   },
   "engines": {
     "node": "^18"
-  }
+  },
+  "packageManager": "pnpm@8.10.2"
 }

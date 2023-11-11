@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeDevCommand": "cd nt && yarn dev && cd ..",
-    "beforeBuildCommand": "cd nt && yarn build && cd ..",
+    "beforeDevCommand": "cd nt && pnpm dev && cd ..",
+    "beforeBuildCommand": "cd nt && pnpm build && cd ..",
     "devPath": "http://localhost:5314",
     "distDir": "../nt/.output/public",
     "withGlobalTauri": false
