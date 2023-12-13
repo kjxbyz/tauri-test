@@ -9,10 +9,10 @@
     "postinstall": "cd nt && pnpm i && cd .."
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.5.1"
+    "@tauri-apps/api": "^1.5.2"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.5.7"
+    "@tauri-apps/cli": "^1.5.8"
   },
   "engines": {
     "node": "^18"
